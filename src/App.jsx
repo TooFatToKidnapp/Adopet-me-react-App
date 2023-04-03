@@ -1,5 +1,5 @@
 import { createRoot } from "react-dom/client";
-import SearchParamsa from "./SearchParams";
+import SearchParamsa from "./SearchParams.jsx";
 
 const App = () => {
   return (
