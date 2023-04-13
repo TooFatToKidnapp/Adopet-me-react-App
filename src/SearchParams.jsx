@@ -19,7 +19,6 @@ const SearchParams = () => {
   const results = useQuery(["search", requestParams], fetchSearch);
   const pets = results?.data?.pets ?? [];
 
-
   return (
     <div className="search-params">
       <form
@@ -29,18 +28,14 @@ const SearchParams = () => {
           const obj = {
             animal: formData.get("animal") ?? "",
             breed: formData.get("breed") ?? "",
-            location: formData.get("location") ?? ""
+            location: formData.get("location") ?? "",
           };
           setRequestParams(obj);
         }}
       >
         <label htmlFor="Location">
           Location
-          <input
-            name="location"
-            id="location"
-            placeholder="Location"
-          />
+          <input name="location" id="location" placeholder="Location" />
         </label>
         <label htmlFor="animal">
           Animal
@@ -51,22 +46,20 @@ const SearchParams = () => {
               setAnimal(e.target.value);
             }}
             onBlur={(e) => {
-              setAnimal(e.target.value)
+              setAnimal(e.target.value);
             }}
           >
             <option />
             {Animals.map((animal) => (
-              <option key={animal} value={animal}>{animal}</option>
+              <option key={animal} value={animal}>
+                {animal}
+              </option>
             ))}
           </select>
         </label>
         <label htmlFor="breed">
           Breed
-          <select
-            id="breed"
-            disabled={BREEDS.length === 0}
-            name="breed"
-          >
+          <select id="breed" disabled={BREEDS.length === 0} name="breed">
             <option />
             {BREEDS.map((breed) => (
               <option key={breed}>{breed}</option>
