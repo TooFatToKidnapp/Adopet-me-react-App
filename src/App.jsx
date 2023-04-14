@@ -5,6 +5,8 @@ import { Outlet } from "react-router-dom";
 import Details from "./Details.jsx";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import Notfound from "./NotFound.jsx";
+import { useState } from "react";
+import AdoptedPetsContext from "./AdoptedPetsContext.js";
 
 const Header = () => {
   return (
@@ -27,16 +29,19 @@ const queryClient = new QueryClient({
 });
 
 const App = () => {
+  const adoptedPet = useState(null)
   return (
     <BrowserRouter>
       <QueryClientProvider client={queryClient}>
-        <Routes>
-          <Route path="*" element={<Notfound />} />
-          <Route element={<Header />}>
-            <Route path="details/:id" element={<Details />} />
-            <Route path="/" element={<SearchParamsa />} />
-          </Route>
-        </Routes>
+        <AdoptedPetsContext.Provider value={adoptedPet} > 
+          <Routes>
+            <Route path="*" element={<Notfound />} />
+            <Route element={<Header />}>
+              <Route path="details/:id" element={<Details />} />
+              <Route path="/" element={<SearchParamsa />} />
+            </Route>
+          </Routes>
+        </AdoptedPetsContext.Provider>
       </QueryClientProvider>
     </BrowserRouter>
   );
